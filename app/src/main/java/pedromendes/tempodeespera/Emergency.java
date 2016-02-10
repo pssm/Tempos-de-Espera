@@ -1,7 +1,7 @@
 package pedromendes.tempodeespera;
 
 
-public class HospitalEmergencyDetail {
+public class Emergency {
     String name;
     String description;
     EmergencyQueue redQueue = new EmergencyQueue();

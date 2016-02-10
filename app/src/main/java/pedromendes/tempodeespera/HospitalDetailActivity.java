@@ -1,5 +1,6 @@
 package pedromendes.tempodeespera;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,11 +24,14 @@ public class HospitalDetailActivity extends AppCompatActivity {
     private Logger logger = Logger.getLogger(HospitalDetailActivity.class.getName());
 
     private static final String HOSPITAL_DETAIL_URL = "http://tempos.min-saude.pt/api.php/standbyTime/";
+    ProgressDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_detail);
+
         Long hospitalId = getIntent().getExtras().getLong("HOSPITAL_ID");
         String hospitalName = getIntent().getExtras().getString("HOSPITAL_NAME");
         String hospitalDescription = getIntent().getExtras().getString("HOSPITAL_DESCRIPTION");
@@ -33,27 +39,29 @@ public class HospitalDetailActivity extends AppCompatActivity {
         String hospitalPhone = getIntent().getExtras().getString("HOSPITAL_PHONE");
         String hospitalEmail = getIntent().getExtras().getString("HOSPITAL_EMAIL");
 
-
-
         TextView hospitalNameView = (TextView) findViewById(R.id.hospitalName);
         hospitalNameView.setText(hospitalDescription);
         TextView hospitalDescriptionView = (TextView) findViewById(R.id.hospitalDescription);
         hospitalDescriptionView.setText(hospitalName);
-
-
         TextView hospitalAddressView = (TextView) findViewById(R.id.hospitalAddress);
-        hospitalAddressView.setText(hospitalName);
+        hospitalAddressView.setText(hospitalAddress);
+        TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
+        hospitalPhoneView.setText(hospitalPhone);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("A carregar...");
+        dialog.show();
 
         new RequestHospitalDetailTask().execute(hospitalId.toString());
     }
 
 
-    class RequestHospitalDetailTask extends AsyncTask<String, String, HospitalEmergencyDetail> {
+    class RequestHospitalDetailTask extends AsyncTask<String, String, List<Emergency>> {
 
         @Override
-        protected HospitalEmergencyDetail doInBackground(String... hospitalId) {
+        protected List<Emergency> doInBackground(String... hospitalId) {
             HttpURLConnection urlConnection = null;
-            HospitalEmergencyDetail hospitalEmergencyDetail = null;
+            List<Emergency> hospitalEmergencyDetail = null;
             try {
                 URL url = new URL(HOSPITAL_DETAIL_URL.concat(hospitalId[0]));
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -69,29 +77,34 @@ public class HospitalDetailActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(HospitalEmergencyDetail result) {
+        protected void onPostExecute(List<Emergency> result) {
+            dialog.hide();
             super.onPostExecute(result);
+
             if (result == null) {
                 return;
             }
+            Emergency emergency1 = result.get(0);
+
             final TextView emergencyNameView = (TextView) findViewById(R.id.emergencyName);
-            emergencyNameView.setText(result.getName());
+            emergencyNameView.setText(emergency1.getName());
 
             TextView redQueueTimeView = (TextView) findViewById(R.id.redQueueTime);
-            redQueueTimeView.setText(result.getRedQueue().getTime());
+            redQueueTimeView.setText(emergency1.getRedQueue().getTime());
             TextView orangeQueueTimeView = (TextView) findViewById(R.id.orangeQueueTime);
-            orangeQueueTimeView.setText(result.getOrangeQueue().getTime());
+            orangeQueueTimeView.setText(emergency1.getOrangeQueue().getTime());
             TextView yellowQueueTimeView = (TextView) findViewById(R.id.yellowQueueTime);
-            yellowQueueTimeView.setText(result.getYellowQueue().getTime());
+            yellowQueueTimeView.setText(emergency1.getYellowQueue().getTime());
             TextView blueQueueTime = (TextView) findViewById(R.id.blueQueueTime);
-            blueQueueTime.setText(result.getBlueQueue().getTime());
+            blueQueueTime.setText(emergency1.getBlueQueue().getTime());
             TextView greenQueueTimeView = (TextView) findViewById(R.id.greenQueueTime);
-            greenQueueTimeView.setText(result.getGreenQueue().getTime());
+            greenQueueTimeView.setText(emergency1.getGreenQueue().getTime());
+
 
         }
     }
 
-    public HospitalEmergencyDetail readJsonStream(InputStream in) throws IOException {
+    public List<Emergency> readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return readHospitalDetailGetResponse(reader);
@@ -101,69 +114,77 @@ public class HospitalDetailActivity extends AppCompatActivity {
     }
 
 
-    private HospitalEmergencyDetail readHospitalDetailGetResponse(JsonReader reader) throws IOException {
-        HospitalEmergencyDetail hospitalEmergencyDetail = null;
+    private List<Emergency> readHospitalDetailGetResponse(JsonReader reader) throws IOException {
+        List<Emergency> result = null;
         reader.beginObject();
         while (reader.hasNext()) {
-            hospitalEmergencyDetail = readResult(reader);
+            result = readResult(reader);
         }
         reader.endObject();
-        return hospitalEmergencyDetail;
+        return result;
     }
 
-    public HospitalEmergencyDetail readResult(JsonReader reader) throws IOException {
-        HospitalEmergencyDetail hospitalEmergencyDetail = new HospitalEmergencyDetail();
+    public List<Emergency> readResult(JsonReader reader) throws IOException {
+        List<Emergency> result = new ArrayList<>();
         String name = reader.nextName();
         if (name.equals("Result")) {
             reader.beginArray();
-            reader.beginObject();
             while (reader.hasNext()) {
-                String fieldDame = reader.nextName();
-                if (fieldDame.equals("Emergency")) {
-                    reader.beginObject();
-                    reader.nextName();
-                    reader.nextString();
-                    reader.nextName();
-                    hospitalEmergencyDetail.setDescription(reader.nextString());
-                    reader.endObject();
-                } else if (fieldDame.equals("Queue") && reader.peek() != JsonToken.NULL) {
-                    reader.beginObject();
-                    reader.nextName();
-                    reader.nextString();
-                    reader.nextName();
-                    hospitalEmergencyDetail.setName(reader.nextString());
-                    reader.endObject();
-                } else if (fieldDame.equals("Red")) {
-                    reader.beginObject();
-                    fillQueue(reader, hospitalEmergencyDetail.getRedQueue());
-                    reader.endObject();
-                } else if (fieldDame.equals("Orange")) {
-                    reader.beginObject();
-                    fillQueue(reader, hospitalEmergencyDetail.getOrangeQueue());
-                    reader.endObject();
-                } else if (fieldDame.equals("Yellow")) {
-                    reader.beginObject();
-                    fillQueue(reader, hospitalEmergencyDetail.getYellowQueue());
-                    reader.endObject();
-                } else if (fieldDame.equals("Green")) {
-                    reader.beginObject();
-                    fillQueue(reader, hospitalEmergencyDetail.getGreenQueue());
-                    reader.endObject();
-                } else if (fieldDame.equals("Blue")) {
-                    reader.beginObject();
-                    fillQueue(reader, hospitalEmergencyDetail.getBlueQueue());
-                    reader.endObject();
-                } else {
-                    reader.skipValue();
-                }
+                reader.beginObject();
+                Emergency hospitalEmergencyDetail = new Emergency();
+                readEmergency(reader, hospitalEmergencyDetail);
+                reader.endObject();
+                result.add(hospitalEmergencyDetail);
             }
-            reader.endObject();
             reader.endArray();
         }
-        return hospitalEmergencyDetail;
+        return result;
     }
 
-    public void fillQueue(JsonReader reader, HospitalEmergencyDetail.EmergencyQueue queue) throws IOException {
+    private void readEmergency(JsonReader reader, Emergency hospitalEmergencyDetail) throws IOException {
+        while (reader.hasNext()) {
+            String fieldDame = reader.nextName();
+            if (fieldDame.equals("Emergency")) {
+                reader.beginObject();
+                reader.nextName();
+                reader.nextString();
+                reader.nextName();
+                hospitalEmergencyDetail.setDescription(reader.nextString());
+                reader.endObject();
+            } else if (fieldDame.equals("Queue") && reader.peek() != JsonToken.NULL) {
+                reader.beginObject();
+                reader.nextName();
+                reader.nextString();
+                reader.nextName();
+                hospitalEmergencyDetail.setName(reader.nextString());
+                reader.endObject();
+            } else if (fieldDame.equals("Red")) {
+                reader.beginObject();
+                fillQueue(reader, hospitalEmergencyDetail.getRedQueue());
+                reader.endObject();
+            } else if (fieldDame.equals("Orange")) {
+                reader.beginObject();
+                fillQueue(reader, hospitalEmergencyDetail.getOrangeQueue());
+                reader.endObject();
+            } else if (fieldDame.equals("Yellow")) {
+                reader.beginObject();
+                fillQueue(reader, hospitalEmergencyDetail.getYellowQueue());
+                reader.endObject();
+            } else if (fieldDame.equals("Green")) {
+                reader.beginObject();
+                fillQueue(reader, hospitalEmergencyDetail.getGreenQueue());
+                reader.endObject();
+            } else if (fieldDame.equals("Blue")) {
+                reader.beginObject();
+                fillQueue(reader, hospitalEmergencyDetail.getBlueQueue());
+                reader.endObject();
+            } else {
+                reader.skipValue();
+            }
+        }
+    }
+
+    public void fillQueue(JsonReader reader, Emergency.EmergencyQueue queue) throws IOException {
         reader.nextName();
         int time = reader.nextInt();
         reader.nextName();

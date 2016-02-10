@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Quanto vou esperar?"
+        android:text="Quanto tempo vou esperar?"
         android:id="@+id/textView6"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
