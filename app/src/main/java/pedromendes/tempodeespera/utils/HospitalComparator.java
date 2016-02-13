@@ -1,6 +1,8 @@
-package pedromendes.tempodeespera;
+package pedromendes.tempodeespera.utils;
 
 import java.util.Comparator;
+
+import pedromendes.tempodeespera.data.Hospital;
 
 
 public class HospitalComparator implements Comparator<Hospital> {

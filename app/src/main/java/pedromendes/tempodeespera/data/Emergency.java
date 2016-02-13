@@ -1,4 +1,4 @@
-package pedromendes.tempodeespera;
+package pedromendes.tempodeespera.data;
 
 
 public class Emergency {
@@ -86,52 +86,17 @@ public class Emergency {
         this.blueQueue = queue;
     }
 
-    static class EmergencyQueue {
-        int time;
-        int length;
-
-        public EmergencyQueue() {
-        }
-
-        public EmergencyQueue(int time, int length) {
-            this.time = time;
-            this.length = length;
-        }
-
-        public String getTime() {
-            if(time > 0) {
-                return "" +  (time / 60) + " min";
-            }
-
-            return "-";
-        }
-
-        public void setTime(int time) {
-            this.time = time;
-        }
-
-        public int getLength() {
-            return length;
-        }
-
-        public void setLength(int length) {
-            this.length = length;
-        }
-
-
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(getName() + "\n" );
-        sb.append(getDescription() + "\n" );
-        sb.append("Senha verde: " + getGreenQueue().getTime() + "\n" );
-        sb.append("Senha azul: " + getBlueQueue().getTime() + "\n" );
-        sb.append("Senha amarela: " + getYellowQueue().getTime() + "\n" );
-        sb.append("Senha laranja: " + getOrangeQueue().getTime() + "\n" );
-        sb.append("Senha vermelha: " + getRedQueue().getTime() + "\n" );
+        sb.append(getName() + "\n");
+        sb.append(getDescription() + "\n");
+        sb.append("Senha verde: " + getGreenQueue().getTime() + "\n");
+        sb.append("Senha azul: " + getBlueQueue().getTime() + "\n");
+        sb.append("Senha amarela: " + getYellowQueue().getTime() + "\n");
+        sb.append("Senha laranja: " + getOrangeQueue().getTime() + "\n");
+        sb.append("Senha vermelha: " + getRedQueue().getTime() + "\n");
 
         return sb.toString();
     }

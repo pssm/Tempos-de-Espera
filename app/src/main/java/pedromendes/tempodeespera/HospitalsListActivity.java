@@ -23,6 +23,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import pedromendes.tempodeespera.adapters.HospitalListAdapter;
+import pedromendes.tempodeespera.data.Hospital;
+import pedromendes.tempodeespera.utils.HospitalComparator;
+import pedromendes.tempodeespera.utils.SortedList;
+import pedromendes.tempodeespera.utils.Util;
+
 public class HospitalsListActivity extends AppCompatActivity {
 
     private Logger logger = Logger.getLogger(HospitalsListActivity.class.getName());
@@ -61,7 +67,6 @@ public class HospitalsListActivity extends AppCompatActivity {
         List hospitals = new ArrayList();
 
         String name = reader.nextName();
-        Hospital newHospital = new Hospital();
         if (name.equals("Result")) {
             reader.beginArray();
             while (reader.hasNext()) {
@@ -136,7 +141,7 @@ public class HospitalsListActivity extends AppCompatActivity {
             hospitalRegionsView.setAdapter(hospitalRegionsAdapter);
 
             final ListView listView = (ListView) findViewById(R.id.listView);
-            final ArrayAdapter hospitalListAdapter = new ArrayAdapter(HospitalsListActivity.this, android.R.layout.simple_list_item_1, result);
+            final HospitalListAdapter hospitalListAdapter = new HospitalListAdapter(HospitalsListActivity.this, R.layout.hospital_list_item, result);
             listView.setAdapter(hospitalListAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

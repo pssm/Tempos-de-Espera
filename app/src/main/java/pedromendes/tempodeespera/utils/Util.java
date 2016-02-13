@@ -1,10 +1,12 @@
-package pedromendes.tempodeespera;
+package pedromendes.tempodeespera.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import pedromendes.tempodeespera.data.Hospital;
 
 /**
  * Created by Pedro Mendes on 05-02-2016.

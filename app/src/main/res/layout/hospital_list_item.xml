@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/list_view_height"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/left_padding"
+    android:paddingRight="@dimen/right_padding"
+    android:paddingBottom="@dimen/bottom_padding"
+    android:paddingTop="@dimen/top_padding">
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="Hospital Name"
+        android:id="@+id/list_hospital_name"
+        android:singleLine="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical" />
+</LinearLayout>

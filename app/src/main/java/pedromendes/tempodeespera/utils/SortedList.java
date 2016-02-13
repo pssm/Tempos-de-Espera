@@ -1,4 +1,4 @@
-package pedromendes.tempodeespera;
+package pedromendes.tempodeespera.utils;
 
 import java.util.Collection;
 import java.util.Collections;

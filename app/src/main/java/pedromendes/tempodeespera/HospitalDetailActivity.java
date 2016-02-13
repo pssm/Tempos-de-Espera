@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.JsonReader;
 import android.util.JsonToken;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.BufferedInputStream;
@@ -18,6 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import pedromendes.tempodeespera.adapters.EmergencyListAdapter;
+import pedromendes.tempodeespera.data.Emergency;
+import pedromendes.tempodeespera.data.EmergencyQueue;
 
 public class HospitalDetailActivity extends AppCompatActivity {
 
@@ -40,9 +46,14 @@ public class HospitalDetailActivity extends AppCompatActivity {
         String hospitalEmail = getIntent().getExtras().getString("HOSPITAL_EMAIL");
 
         TextView hospitalNameView = (TextView) findViewById(R.id.hospitalName);
-        hospitalNameView.setText(hospitalDescription);
-        TextView hospitalDescriptionView = (TextView) findViewById(R.id.hospitalDescription);
-        hospitalDescriptionView.setText(hospitalName);
+        if(hospitalDescription != null && !hospitalDescription.isEmpty()) {
+            hospitalNameView.setText(hospitalDescription);
+            TextView hospitalDescriptionView = (TextView) findViewById(R.id.hospitalDescription);
+            hospitalDescriptionView.setText(hospitalName);
+        } else {
+            hospitalNameView.setText(hospitalName);
+        }
+
         TextView hospitalAddressView = (TextView) findViewById(R.id.hospitalAddress);
         hospitalAddressView.setText(hospitalAddress);
         TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
@@ -82,25 +93,13 @@ public class HospitalDetailActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             if (result == null) {
+                TextView noAvailableData = (TextView) findViewById(R.id.no_available_data);
+                noAvailableData.setText("Esta instituição não partilha tempos da urgência.");
                 return;
             }
-            Emergency emergency1 = result.get(0);
-
-            final TextView emergencyNameView = (TextView) findViewById(R.id.emergencyName);
-            emergencyNameView.setText(emergency1.getName());
-
-            TextView redQueueTimeView = (TextView) findViewById(R.id.redQueueTime);
-            redQueueTimeView.setText(emergency1.getRedQueue().getTime());
-            TextView orangeQueueTimeView = (TextView) findViewById(R.id.orangeQueueTime);
-            orangeQueueTimeView.setText(emergency1.getOrangeQueue().getTime());
-            TextView yellowQueueTimeView = (TextView) findViewById(R.id.yellowQueueTime);
-            yellowQueueTimeView.setText(emergency1.getYellowQueue().getTime());
-            TextView blueQueueTime = (TextView) findViewById(R.id.blueQueueTime);
-            blueQueueTime.setText(emergency1.getBlueQueue().getTime());
-            TextView greenQueueTimeView = (TextView) findViewById(R.id.greenQueueTime);
-            greenQueueTimeView.setText(emergency1.getGreenQueue().getTime());
-
-
+            ArrayAdapter emergencyListAdapter = new EmergencyListAdapter(HospitalDetailActivity.this, R.layout.emergency_list_item, result);
+            ListView emergenciesListView = (ListView) findViewById(R.id.emergencies_list);
+            emergenciesListView.setAdapter(emergencyListAdapter);
         }
     }
 
@@ -125,7 +124,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
     }
 
     public List<Emergency> readResult(JsonReader reader) throws IOException {
-        List<Emergency> result = new ArrayList<>();
+        List<Emergency> result = new ArrayList<Emergency>();
         String name = reader.nextName();
         if (name.equals("Result")) {
             reader.beginArray();
@@ -184,7 +183,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
         }
     }
 
-    public void fillQueue(JsonReader reader, Emergency.EmergencyQueue queue) throws IOException {
+    public void fillQueue(JsonReader reader, EmergencyQueue queue) throws IOException {
         reader.nextName();
         int time = reader.nextInt();
         reader.nextName();

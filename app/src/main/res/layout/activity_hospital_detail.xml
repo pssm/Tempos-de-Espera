@@ -9,185 +9,64 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pedromendes.tempodeespera.HospitalDetailActivity">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/hospitalNameRow">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/hospitalName" />
-        </TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:paddingTop="@dimen/top_padding"
+            android:paddingBottom="@dimen/bottom_padding"
+            android:id="@+id/hospitalName" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/hospitalDescriptionRow">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/top_padding"
+            android:paddingBottom="@dimen/bottom_padding"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/hospitalDescription" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/hospitalDescription" />
-        </TableRow>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/top_padding"
+            android:paddingBottom="@dimen/bottom_padding"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/hospitalAddress"
+            android:phoneNumber="true" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/top_padding"
+            android:paddingBottom="@dimen/bottom_padding"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/hospitalPhone" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/hospitalAddress"
-                android:phoneNumber="true" />
-        </TableRow>
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:id="@+id/hospitalEmail" />-->
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/no_available_data"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/hospitalPhone" />
-        </TableRow>
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/emergencies_list" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/hospitalEmail" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/emergencyName" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="left">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Senha Vermelha"
-                android:id="@+id/textView"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/redQueueTime"
-                android:layout_column="3"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Senha Laranja"
-                android:id="@+id/textView2"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/orangeQueueTime"
-                android:layout_column="3"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Senha Amarela"
-                android:id="@+id/textView3"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/yellowQueueTime"
-                android:layout_column="3"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Senha Azul"
-                android:id="@+id/textView4"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/blueQueueTime"
-                android:layout_column="3"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Senha Verde"
-                android:id="@+id/textView5"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/greenQueueTime"
-                android:layout_column="3"
-                android:layout_gravity="left"
-                android:layout_weight="1" />
-        </TableRow>
-
-    </TableLayout>
+    </LinearLayout>
 
 </RelativeLayout>

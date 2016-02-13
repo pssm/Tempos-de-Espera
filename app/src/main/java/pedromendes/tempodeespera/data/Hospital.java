@@ -1,4 +1,4 @@
-package pedromendes.tempodeespera;
+package pedromendes.tempodeespera.data;
 
 
 public class Hospital {
@@ -93,10 +93,13 @@ public class Hospital {
         this.institutionUrl = institutionUrl;
     }
 
+    public boolean isInDistrict(String district) {
+        return this.district.equalsIgnoreCase(district);
+    }
+
     @Override
     public String toString() {
-
-        return getName() + " - " + getDistrict();
+        return getName();
     }
 
 }
