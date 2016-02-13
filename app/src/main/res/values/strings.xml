@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Tempo de Espera</string>
+
+    <string name="clock">&#xf017;</string>
+    <string name="phone">&#xf098;</string>
 </resources>

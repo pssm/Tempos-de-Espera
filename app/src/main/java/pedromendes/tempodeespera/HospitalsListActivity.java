@@ -1,5 +1,6 @@
 package pedromendes.tempodeespera;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,11 +35,16 @@ public class HospitalsListActivity extends AppCompatActivity {
     private Logger logger = Logger.getLogger(HospitalsListActivity.class.getName());
 
     private final static String HOSPITALS_LIST_URI = "http://tempos.min-saude.pt/api.php/institution";
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospitals_list);
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("A carregar...");
+        dialog.show();
+
         new RequestHospitalsListTask().execute();
     }
 
@@ -71,7 +77,10 @@ public class HospitalsListActivity extends AppCompatActivity {
             reader.beginArray();
             while (reader.hasNext()) {
                 reader.beginObject();
-                hospitals.add(readHospital(reader));
+                Hospital hospital = readHospital(reader);
+                if(hospital.isHasEmergency()) {
+                    hospitals.add(hospital);
+                }
             }
             reader.endArray();
         }
@@ -100,6 +109,10 @@ public class HospitalsListActivity extends AppCompatActivity {
                 hospital.setStandbyTimesUrl(reader.nextString());
             } else if (name.equals("HasEmergency") && reader.peek() != JsonToken.NULL) {
                 hospital.setHasEmergency(reader.nextBoolean());
+            } else if (name.equals("Longitude") && reader.peek() != JsonToken.NULL) {
+                hospital.setLongitude(reader.nextString());
+            } else if (name.equals("Latitude") && reader.peek() != JsonToken.NULL) {
+                hospital.setLatitude(reader.nextString());
             } else {
                 reader.skipValue();
             }
@@ -134,7 +147,7 @@ public class HospitalsListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List result) {
             super.onPostExecute(result);
-
+            dialog.hide();
             final Spinner hospitalRegionsView = (Spinner) findViewById(R.id.hospitalRegions);
             List regions = Util.INSTANCE.extractHospitalRegions(result);
             final ArrayAdapter hospitalRegionsAdapter = new ArrayAdapter(HospitalsListActivity.this, android.R.layout.simple_list_item_1, regions);
@@ -155,6 +168,8 @@ public class HospitalsListActivity extends AppCompatActivity {
                     hospitalDetailActivityIntent.putExtra("HOSPITAL_ADDRESS", item.getAddress());
                     hospitalDetailActivityIntent.putExtra("HOSPITAL_PHONE", item.getPhone());
                     hospitalDetailActivityIntent.putExtra("HOSPITAL_EMAIL", item.getEmail());
+                    hospitalDetailActivityIntent.putExtra("HOSPITAL_LONG", item.getLongitude());
+                    hospitalDetailActivityIntent.putExtra("HOSPITAL_LAT", item.getLatitude());
                     startActivity(hospitalDetailActivityIntent);
                 }
             });

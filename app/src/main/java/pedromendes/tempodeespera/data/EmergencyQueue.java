@@ -2,9 +2,7 @@ package pedromendes.tempodeespera.data;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by Pedro Mendes on 13-02-2016.
- */
+
 public class EmergencyQueue {
     int time;
     int length;

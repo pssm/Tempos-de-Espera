@@ -1,9 +1,12 @@
 package pedromendes.tempodeespera;
 
 import android.app.ProgressDialog;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.widget.ArrayAdapter;
@@ -38,26 +41,35 @@ public class HospitalDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_detail);
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+
         Long hospitalId = getIntent().getExtras().getLong("HOSPITAL_ID");
         String hospitalName = getIntent().getExtras().getString("HOSPITAL_NAME");
         String hospitalDescription = getIntent().getExtras().getString("HOSPITAL_DESCRIPTION");
         String hospitalAddress = getIntent().getExtras().getString("HOSPITAL_ADDRESS");
         String hospitalPhone = getIntent().getExtras().getString("HOSPITAL_PHONE");
         String hospitalEmail = getIntent().getExtras().getString("HOSPITAL_EMAIL");
+        String latitude = getIntent().getExtras().getString("HOSPITAL_LAT");
+        String longitude = getIntent().getExtras().getString("HOSPITAL_LONG");
 
         TextView hospitalNameView = (TextView) findViewById(R.id.hospitalName);
-        if(hospitalDescription != null && !hospitalDescription.isEmpty()) {
-            hospitalNameView.setText(hospitalDescription);
-            TextView hospitalDescriptionView = (TextView) findViewById(R.id.hospitalDescription);
-            hospitalDescriptionView.setText(hospitalName);
-        } else {
-            hospitalNameView.setText(hospitalName);
+        hospitalNameView.setText(hospitalName);
+
+        if (hospitalAddress != null && !hospitalAddress.isEmpty()) {
+            TextView hospitalAddressView = (TextView) findViewById(R.id.hospitalAddress);
+            hospitalAddressView.setText(Html.fromHtml(hospitalAddress + "<br/>" +
+                    "<a href=\"geo:" + latitude + "," + longitude + "\">" +
+                    "Ver mapa" +
+                    "</a>"));
+            hospitalAddressView.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
-        TextView hospitalAddressView = (TextView) findViewById(R.id.hospitalAddress);
-        hospitalAddressView.setText(hospitalAddress);
-        TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
-        hospitalPhoneView.setText(hospitalPhone);
+
+        if (hospitalPhone != null && !hospitalPhone.isEmpty()) {
+            TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
+            hospitalPhoneView.append(" " + hospitalPhone);
+            hospitalPhoneView.setTypeface(font);
+        }
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("A carregar...");

@@ -1,6 +1,7 @@
 package pedromendes.tempodeespera.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,12 @@ import pedromendes.tempodeespera.data.Emergency;
 
 public class EmergencyListAdapter extends ArrayAdapter<Emergency> {
 
+    private final Context context;
     private List<Emergency> emergencies;
 
     public EmergencyListAdapter(Context context, int resource, List<Emergency> objects) {
         super(context, resource, objects);
+        this.context = context;
 
         this.emergencies = objects;
     }
@@ -34,6 +37,19 @@ public class EmergencyListAdapter extends ArrayAdapter<Emergency> {
         if (emergency.getName() != null) {
             name.setText(emergency.getName());
         }
+
+        Typeface font = Typeface.createFromAsset(context.getAssets(), "fontawesome-webfont.ttf");
+
+        TextView clockView0 = (TextView) convertView.findViewById(R.id.clock0);
+        TextView clockView1 = (TextView) convertView.findViewById(R.id.clock1);
+        TextView clockView2 = (TextView) convertView.findViewById(R.id.clock2);
+        TextView clockView3 = (TextView) convertView.findViewById(R.id.clock3);
+        TextView clockView4 = (TextView) convertView.findViewById(R.id.clock4);
+        clockView0.setTypeface(font);
+        clockView1.setTypeface(font);
+        clockView2.setTypeface(font);
+        clockView3.setTypeface(font);
+        clockView4.setTypeface(font);
 
         TextView redQueue = (TextView) convertView.findViewById(R.id.emergency_list_red_queue);
         TextView orangeQueue = (TextView) convertView.findViewById(R.id.emergency_list_orange_queue);

@@ -1,0 +1,67 @@
+//http: //tempos.min-saude.pt/api.php/standbyTime/218
+{
+  "Result": [
+    {
+      "LastUpdate": "2016-02-01T15:10:04.187",
+      "Emergency": {
+        "Code": "CHLN1B20",
+        "Description": "Urg\u00eancia Central"
+      },
+      "Queue": {
+        "Code": "CHLN7F25",
+        "Description": "Cirurgia"
+      },
+      "Red": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Orange": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Yellow": {
+        "Time": 5580,
+        "Length": 3
+      },
+      "Green": {
+        "Time": 9660,
+        "Length": 3
+      },
+      "Blue": {
+        "Time": 0,
+        "Length": 0
+      }
+    },
+    {
+      "LastUpdate": "2016-02-01T15:10:04.703",
+      "Emergency": {
+        "Code": "CHLN1B20",
+        "Description": "Urg\u00eancia Central"
+      },
+      "Queue": {
+        "Code": "CHLN8752",
+        "Description": "Medicina"
+      },
+      "Red": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Orange": {
+        "Time": 2460,
+        "Length": 2
+      },
+      "Yellow": {
+        "Time": 7620,
+        "Length": 11
+      },
+      "Green": {
+        "Time": 6960,
+        "Length": 15
+      },
+      "Blue": {
+        "Time": 12120,
+        "Length": 2
+      }
+    }
+  ]
+}

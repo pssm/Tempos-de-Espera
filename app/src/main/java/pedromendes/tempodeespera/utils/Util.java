@@ -8,9 +8,6 @@ import java.util.Map;
 
 import pedromendes.tempodeespera.data.Hospital;
 
-/**
- * Created by Pedro Mendes on 05-02-2016.
- */
 public enum Util {
     INSTANCE;
 
