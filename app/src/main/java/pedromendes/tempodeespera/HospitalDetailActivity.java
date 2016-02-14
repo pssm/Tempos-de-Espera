@@ -15,15 +15,21 @@
 
 package pedromendes.tempodeespera;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.JsonReader;
 import android.util.JsonToken;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,7 +68,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
         String hospitalName = getIntent().getExtras().getString("HOSPITAL_NAME");
         String hospitalDescription = getIntent().getExtras().getString("HOSPITAL_DESCRIPTION");
         String hospitalAddress = getIntent().getExtras().getString("HOSPITAL_ADDRESS");
-        String hospitalPhone = getIntent().getExtras().getString("HOSPITAL_PHONE");
+        final String hospitalPhone = getIntent().getExtras().getString("HOSPITAL_PHONE");
         String hospitalEmail = getIntent().getExtras().getString("HOSPITAL_EMAIL");
         String latitude = getIntent().getExtras().getString("HOSPITAL_LAT");
         String longitude = getIntent().getExtras().getString("HOSPITAL_LONG");
@@ -84,6 +90,20 @@ public class HospitalDetailActivity extends AppCompatActivity {
             TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
             hospitalPhoneView.append(" " + hospitalPhone);
             hospitalPhoneView.setTypeface(font);
+
+
+            hospitalPhoneView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + hospitalPhone));
+                    callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    startActivity(callIntent);
+                }
+            });
         }
 
         dialog = new ProgressDialog(this);

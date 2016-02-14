@@ -12,27 +12,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/hospitalName"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPallete2"
             android:background="@color/colorPallete3"
-            android:paddingLeft="@dimen/left_padding"
-            android:paddingRight="@dimen/right_padding"
-            android:paddingTop="@dimen/activity_header_top_padding"
-            android:paddingBottom="@dimen/activity_header_bottom_padding"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:orientation="vertical">
 
-        <!--<TextView-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingTop="@dimen/top_padding"-->
-        <!--android:paddingBottom="@dimen/bottom_padding"-->
-        <!--android:paddingLeft="@dimen/left_padding"-->
-        <!--android:paddingRight="@dimen/right_padding"-->
-        <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-        <!--android:id="@+id/hospitalDescription" />-->
+            <TextView
+                android:id="@+id/hospitalName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingBottom="@dimen/activity_header_bottom_padding"
+                android:paddingLeft="@dimen/left_padding"
+                android:paddingRight="@dimen/right_padding"
+                android:paddingTop="@dimen/activity_header_top_padding"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPallete2" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/hospitalAddress"
@@ -42,8 +40,8 @@
             android:paddingLeft="@dimen/left_padding"
             android:paddingRight="@dimen/right_padding"
             android:paddingTop="@dimen/top_padding"
-            android:textColor="@color/colorPallete4"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorPallete4"
             android:textIsSelectable="true" />
 
         <TextView
@@ -56,9 +54,9 @@
             android:paddingTop="@dimen/top_padding"
             android:phoneNumber="true"
             android:text="@string/phone"
-            android:textColor="@color/colorPallete4"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textIsSelectable="true" />
+            android:textColor="@color/colorPallete4"
+            android:textIsSelectable="false" />
 
         <TextView
             android:id="@+id/no_available_data"
@@ -66,8 +64,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/left_padding"
             android:paddingRight="@dimen/right_padding"
-            android:textColor="@color/colorPriority0"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorPriority0"
             android:textStyle="bold" />
 
         <ListView
