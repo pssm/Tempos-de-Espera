@@ -51,7 +51,12 @@ public class EmergencyListAdapter extends ArrayAdapter<Emergency> {
         TextView name = (TextView) convertView.findViewById(R.id.emergency_name);
         if (emergency.getName() != null) {
             name.setText(emergency.getName());
+        } else {
+            name.setText(emergency.getDescription());
         }
+
+        TextView lastUpdate = (TextView) convertView.findViewById(R.id.last_update);
+        lastUpdate.setText("Última actualização há " + emergency.getFormattedLastUpdate() + ".");
 
         Typeface font = Typeface.createFromAsset(context.getAssets(), "fontawesome-webfont.ttf");
 

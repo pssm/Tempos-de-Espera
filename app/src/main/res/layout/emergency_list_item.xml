@@ -17,13 +17,6 @@
         android:text="Urgência"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-    <!--android:text="Medium Text"-->
-    <!--android:id="@+id/emergency_list_last_update" android:layout_marginTop="8dp" />-->
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -183,8 +176,7 @@
             android:layout_weight="3"
             android:gravity="left"
             android:text="Senha Azul"
-            android:textColor="@color/colorPriority4"
-            />
+            android:textColor="@color/colorPriority4" />
 
         <TextView
             android:id="@+id/emergency_list_blue_queue"
@@ -195,5 +187,16 @@
             android:text="-"
             android:textColor="@color/colorPallete4" />
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/last_update"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        android:textColor="@color/colorPallete4"
+        android:textSize="@dimen/last_update_size" />
+
 
 </LinearLayout>

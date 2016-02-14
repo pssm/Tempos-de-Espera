@@ -26,6 +26,9 @@ import pedromendes.tempodeespera.data.Hospital;
 public enum Util {
     INSTANCE;
 
+    public static final String ISO_8601_24H_FULL_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+
+
     public List<String> extractHospitalRegions(List<Hospital> hospitals) {
         Map<String, String> hospitalMap = new HashMap<>();
 

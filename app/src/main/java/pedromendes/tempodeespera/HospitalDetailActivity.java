@@ -204,6 +204,8 @@ public class HospitalDetailActivity extends AppCompatActivity {
                 reader.beginObject();
                 fillQueue(reader, hospitalEmergencyDetail.getBlueQueue());
                 reader.endObject();
+            } else if (fieldDame.equals("LastUpdate")) {
+                hospitalEmergencyDetail.setLastUpdate(reader.nextString());
             } else {
                 reader.skipValue();
             }

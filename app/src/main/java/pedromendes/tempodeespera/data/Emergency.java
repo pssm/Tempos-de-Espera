@@ -16,9 +16,20 @@
 package pedromendes.tempodeespera.data;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import pedromendes.tempodeespera.utils.Util;
+
 public class Emergency {
     String name;
     String description;
+    Date lastUpdate;
     EmergencyQueue redQueue = new EmergencyQueue();
     EmergencyQueue orangeQueue = new EmergencyQueue();
     EmergencyQueue yellowQueue = new EmergencyQueue();
@@ -99,6 +110,43 @@ public class Emergency {
 
     public void setBlueQueue(EmergencyQueue queue) {
         this.blueQueue = queue;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public String getFormattedLastUpdate() {
+        String result = "-";
+
+        if (lastUpdate != null) {
+            long minutes = (Calendar.getInstance().getTime().getTime() - lastUpdate.getTime()) / 60000;
+            if (minutes <= 60) {
+                return minutes + " min";
+            } else {
+                long hours = TimeUnit.MINUTES.toHours(minutes);
+                long remainMinute = minutes - TimeUnit.HOURS.toMinutes(hours);
+                return String.format("%02d h %02d min", hours, remainMinute);
+            }
+
+        }
+
+        return result;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        //2016-02-14T09:21:19.018
+        DateFormat df = new SimpleDateFormat(Util.ISO_8601_24H_FULL_FORMAT, Locale.getDefault());
+        try {
+            Date result = df.parse(lastUpdate);
+            this.lastUpdate = result;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
