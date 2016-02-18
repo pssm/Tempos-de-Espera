@@ -29,6 +29,7 @@ public class Hospital {
     String institutionUrl;
     String latitude;
     String longitude;
+    private boolean shareStandbyTimes;
 
     public String getLatitude() {
         return latitude;
@@ -126,6 +127,14 @@ public class Hospital {
         this.institutionUrl = institutionUrl;
     }
 
+
+    public void setShareStandbyTimes(boolean shareStandbyTimes) {
+        this.shareStandbyTimes = shareStandbyTimes;
+    }
+
+    public boolean isShareStandbyTimes() {
+        return shareStandbyTimes;
+    }
 
     public boolean isInDistrict(String district) {
         return this.district.equalsIgnoreCase(district);

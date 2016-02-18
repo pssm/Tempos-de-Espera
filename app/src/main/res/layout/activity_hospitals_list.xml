@@ -6,69 +6,72 @@
     tools:context="pedromendes.tempodeespera.HospitalsListActivity">
 
     <TextView
+        android:id="@+id/textView6"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Quanto tempo vou esperar?"
-        android:textColor="@color/colorPallete1"
-        android:background="@color/colorPallete3"
-        android:textStyle="bold"
-        android:id="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPalette3"
+        android:paddingBottom="@dimen/activity_header_bottom_padding"
         android:paddingLeft="@dimen/left_padding"
         android:paddingRight="@dimen/right_padding"
         android:paddingTop="@dimen/activity_header_top_padding"
-        android:paddingBottom="@dimen/activity_header_bottom_padding"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="Quanto tempo vou esperar?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorPalette1"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Saiba os tempos de espera das Urgências do SNS."
-        android:textColor="@color/colorPallete4"
         android:id="@+id/textView99"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingBottom="@dimen/bottom_padding"
-        android:paddingLeft="@dimen/left_padding"
-        android:paddingRight="@dimen/right_padding"
-        android:paddingTop="@dimen/top_padding"/>
-
-    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Seleccione o distrito:"
-        android:textColor="@color/colorPallete2"
-        android:id="@+id/textView7"
-        android:layout_below="@+id/textView99"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView6"
         android:paddingBottom="@dimen/bottom_padding"
         android:paddingLeft="@dimen/left_padding"
         android:paddingRight="@dimen/right_padding"
-        android:paddingTop="@dimen/top_padding"/>
+        android:paddingTop="@dimen/top_padding"
+        android:text="Saiba os tempos de espera das Urgências do SNS."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/colorPalette4" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView99"
+        android:paddingBottom="@dimen/bottom_padding"
+        android:paddingLeft="@dimen/left_padding"
+        android:paddingRight="@dimen/right_padding"
+        android:paddingTop="@dimen/top_padding"
+        android:text="Seleccione o distrito:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/colorPalette2" />
 
     <Spinner
+        android:id="@+id/hospitalRegions"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hospitalRegions"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/colorPallete4"
         android:layout_below="@+id/textView7"
+        android:layout_marginLeft="@dimen/margin_left"
+        android:layout_marginRight="@dimen/margin_right"
         android:paddingBottom="@dimen/bottom_padding"
-
-        android:paddingTop="@dimen/top_padding" />
+        android:paddingLeft="0dp"
+        android:paddingRight="@dimen/right_padding"
+        android:paddingTop="@dimen/top_padding"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/colorPalette4" />
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/hospitalRegions"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/top_padding" />
 
 

@@ -2,5 +2,7 @@
     <string name="app_name">Tempos de Espera</string>
 
     <string name="clock">&#xf017;</string>
+    <string name="times_circle">&#xf05c;</string>
     <string name="phone">&#xf098;</string>
+    <string name="hospital">&#xf0f8;</string>
 </resources>
