@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#ffba56</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorPallete0">#FFFFFF</color>
-    <color name="colorPallete1">#faad17</color>
-    <color name="colorPallete2">#ffba56</color>
-    <color name="colorPallete3">#f2f2f2</color>
-    <color name="colorPallete4">#666666</color>
-    <color name="colorPallete99">#000000</color>
+    <color name="colorPalette0">#FFFFFF</color>
+    <color name="colorPalette1">#faad17</color>
+    <color name="colorPalette2">#ffba56</color>
+    <color name="colorPalette3">#f2f2f2</color>
+    <color name="colorPalette4">#666666</color>
+    <color name="colorPalette99">#000000</color>
 
     <color name="colorPriority0">#ba4e53</color>
     <color name="colorPriority1">#faa85f</color>

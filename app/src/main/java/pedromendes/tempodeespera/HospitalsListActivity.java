@@ -124,6 +124,8 @@ public class HospitalsListActivity extends AppCompatActivity {
                 hospital.setStandbyTimesUrl(reader.nextString());
             } else if (name.equals("HasEmergency") && reader.peek() != JsonToken.NULL) {
                 hospital.setHasEmergency(reader.nextBoolean());
+            } else if (name.equals("ShareStandbyTimes") && reader.peek() != JsonToken.NULL) {
+                hospital.setShareStandbyTimes(reader.nextBoolean());
             } else if (name.equals("Longitude") && reader.peek() != JsonToken.NULL) {
                 hospital.setLongitude(reader.nextString());
             } else if (name.equals("Latitude") && reader.peek() != JsonToken.NULL) {
