@@ -31,6 +31,7 @@ import android.util.JsonReader;
 import android.util.JsonToken;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -87,7 +88,7 @@ public class HospitalDetailActivity extends AppCompatActivity {
 
 
         if (hospitalPhone != null && !hospitalPhone.isEmpty()) {
-            TextView hospitalPhoneView = (TextView) findViewById(R.id.hospitalPhone);
+            Button hospitalPhoneView = (Button) findViewById(R.id.hospitalPhone);
             hospitalPhoneView.append(" " + hospitalPhone);
             hospitalPhoneView.setTypeface(font);
 

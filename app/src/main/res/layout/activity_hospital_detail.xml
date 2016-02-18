@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPallete3"
+            android:background="@color/colorPalette3"
             android:orientation="vertical">
 
             <TextView
@@ -28,7 +28,7 @@
                 android:paddingRight="@dimen/right_padding"
                 android:paddingTop="@dimen/activity_header_top_padding"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorPallete2" />
+                android:textColor="@color/colorPalette2" />
         </LinearLayout>
 
 
@@ -41,22 +41,25 @@
             android:paddingRight="@dimen/right_padding"
             android:paddingTop="@dimen/top_padding"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/colorPallete4"
+            android:textColor="@color/colorPalette4"
             android:textIsSelectable="true" />
 
-        <TextView
+
+        <Button
             android:id="@+id/hospitalPhone"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_marginTop="@dimen/margin_top"
             android:paddingBottom="@dimen/bottom_padding"
             android:paddingLeft="@dimen/left_padding"
             android:paddingRight="@dimen/right_padding"
             android:paddingTop="@dimen/top_padding"
-            android:phoneNumber="true"
             android:text="@string/phone"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/colorPallete4"
-            android:textIsSelectable="false" />
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
         <TextView
             android:id="@+id/no_available_data"
