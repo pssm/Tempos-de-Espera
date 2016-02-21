@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPallete3"
+            android:background="@color/colorPalette3"
             android:orientation="horizontal">
 
             <TextView
@@ -28,7 +28,7 @@
                 android:paddingRight="@dimen/right_padding"
                 android:paddingTop="@dimen/activity_header_top_padding"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorPallete2"
+                android:textColor="@color/colorPalette2"
                 android:layout_weight="1"/>
 
             <CheckBox
