@@ -86,7 +86,6 @@ public class HospitalListAdapter extends ArrayAdapter<Hospital> implements Filte
             return results;
         }
 
-        @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             filteredHospitals = (ArrayList<Hospital>) results.values;

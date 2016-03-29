@@ -21,7 +21,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import pedromendes.tempodeespera.utils.Util;
@@ -120,7 +122,10 @@ public class Emergency {
         String result = "-";
 
         if (lastUpdate != null) {
-            long minutes = (Calendar.getInstance().getTime().getTime() - lastUpdate.getTime()) / 60000;
+            Calendar calendar = new GregorianCalendar();
+            TimeZone timeZone = TimeZone.getTimeZone("Europe/Lisbon");
+            calendar.setTimeZone(timeZone);
+            long minutes = (calendar.getTime().getTime() + timeZone.getDSTSavings() - lastUpdate.getTime()) / 60000;
             if (minutes <= 60) {
                 return minutes + " min";
             } else {
@@ -139,7 +144,6 @@ public class Emergency {
     }
 
     public void setLastUpdate(String lastUpdate) {
-        //2016-02-14T09:21:19.018
         DateFormat df = new SimpleDateFormat(Util.ISO_8601_24H_FULL_FORMAT, Locale.getDefault());
         try {
             Date result = df.parse(lastUpdate);

@@ -6,6 +6,7 @@
     <dimen name="activity_header_top_padding">20dp</dimen>
     <dimen name="activity_header_bottom_padding">20dp</dimen>
 
+    <dimen name="default_padding">16dp</dimen>
     <dimen name="left_padding">16dp</dimen>
     <dimen name="left_padding_hospital">6dp</dimen>
     <dimen name="right_padding">16dp</dimen>

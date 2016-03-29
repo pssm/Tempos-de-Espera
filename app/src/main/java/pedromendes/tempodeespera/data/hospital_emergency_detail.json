@@ -2,14 +2,14 @@
 {
   "Result": [
     {
-      "LastUpdate": "2016-02-01T15:10:04.187",
+      "LastUpdate": "2016-03-29T21:30:06.106",
       "Emergency": {
-        "Code": "CHLN1B20",
-        "Description": "Urg\u00eancia Central"
+        "Code": "5",
+        "Description": "EMERGENCIA"
       },
       "Queue": {
-        "Code": "CHLN7F25",
-        "Description": "Cirurgia"
+        "Code": "1",
+        "Description": "TRAUMA"
       },
       "Red": {
         "Time": 0,
@@ -20,12 +20,12 @@
         "Length": 0
       },
       "Yellow": {
-        "Time": 5580,
-        "Length": 3
+        "Time": 3780,
+        "Length": 2
       },
       "Green": {
-        "Time": 9660,
-        "Length": 3
+        "Time": 0,
+        "Length": 0
       },
       "Blue": {
         "Time": 0,
@@ -33,34 +33,127 @@
       }
     },
     {
-      "LastUpdate": "2016-02-01T15:10:04.703",
+      "LastUpdate": "2016-03-29T21:30:06.706",
       "Emergency": {
-        "Code": "CHLN1B20",
-        "Description": "Urg\u00eancia Central"
+        "Code": "5",
+        "Description": "EMERGENCIA"
       },
       "Queue": {
-        "Code": "CHLN8752",
-        "Description": "Medicina"
+        "Code": "2",
+        "Description": "GABINETES URGENTES"
       },
       "Red": {
         "Time": 0,
         "Length": 0
       },
       "Orange": {
-        "Time": 2460,
-        "Length": 2
+        "Time": 0,
+        "Length": 0
       },
       "Yellow": {
-        "Time": 7620,
-        "Length": 11
+        "Time": 0,
+        "Length": 0
       },
       "Green": {
-        "Time": 6960,
-        "Length": 15
+        "Time": 0,
+        "Length": 0
       },
       "Blue": {
-        "Time": 12120,
-        "Length": 2
+        "Time": 0,
+        "Length": 0
+      }
+    },
+    {
+      "LastUpdate": "2016-03-29T21:30:07.073",
+      "Emergency": {
+        "Code": "5",
+        "Description": "EMERGENCIA"
+      },
+      "Queue": {
+        "Code": "3",
+        "Description": "GABINETES EMERGENTES"
+      },
+      "Red": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Orange": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Yellow": {
+        "Time": 4440,
+        "Length": 7
+      },
+      "Green": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Blue": {
+        "Time": 0,
+        "Length": 0
+      }
+    },
+    {
+      "LastUpdate": "2016-03-29T21:30:08.094",
+      "Emergency": {
+        "Code": "5",
+        "Description": "EMERGENCIA"
+      },
+      "Queue": {
+        "Code": "6",
+        "Description": "SALA OBS. DIAGNOSTICO"
+      },
+      "Red": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Orange": {
+        "Time": 2700,
+        "Length": 1
+      },
+      "Yellow": {
+        "Time": 7260,
+        "Length": 3
+      },
+      "Green": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Blue": {
+        "Time": 0,
+        "Length": 0
+      }
+    },
+    {
+      "LastUpdate": "2016-03-29T21:30:08.531",
+      "Emergency": {
+        "Code": "5",
+        "Description": "EMERGENCIA"
+      },
+      "Queue": {
+        "Code": "7",
+        "Description": "UNIDADE DECISAO CLINICA"
+      },
+      "Red": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Orange": {
+        "Time": 660,
+        "Length": 1
+      },
+      "Yellow": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Green": {
+        "Time": 0,
+        "Length": 0
+      },
+      "Blue": {
+        "Time": 0,
+        "Length": 0
       }
     }
   ]
